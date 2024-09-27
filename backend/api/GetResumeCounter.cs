@@ -22,7 +22,7 @@ namespace Company.Function.CosmosDB
 
             // Increment the counter directly
             counter.Count += 1;
-
+            
             // Save the updated counter back to Cosmos DB (only once)
             await counterCollector.AddAsync(counter);
 
