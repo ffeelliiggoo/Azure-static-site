@@ -9,33 +9,22 @@ using System.Threading.Tasks;
 
 namespace Company.Function.CosmosDB
 {
-    public static class GetResumeCounter
+    public static class GetResumeCounter                                                        
     {
         [FunctionName("GetResumeCounter")]
-        public static async Task<HttpResponseMessage> Run(  // Mark the method as async and change return type to Task<HttpResponseMessage>
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req,
-            [CosmosDB(databaseName: "AzureResume",containerName: "Counter", Connection = "AzureResumeConnectionString", Id = "1",
-            PartitionKey = "id")] Counter counter,
-            [CosmosDB( databaseName: "AzureResume", containerName: "Counter", Connection = "AzureResumeConnectionString",
-            PartitionKey = "id")] IAsyncCollector<Counter> outputCounter,  // Output binding to save the updated counter
+        public static async Task<HttpResponseMessage> Run(  
+            [HttpTrigger(AuthorizationLevel.Function, "get","post")] HttpRequest req,
+            [CosmosDB(databaseName: "AzureResume", containerName: "Counter", Connection = "AzureResumeConnectionString", Id = "1", PartitionKey = "1")] Counter counter,
+            [CosmosDB(databaseName: "AzureResume", containerName: "Counter", Connection = "AzureResumeConnectionString")] IAsyncCollector<Counter> counterCollector,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            // Check if the counter object is null (document not found)
-            if (counter == null)
-            {
-                log.LogInformation("Document not found, creating a new one.");
-                counter = new Counter { Id = "1", Count = 1 };  // Initialize a new Counter document
-            }
-            else
-            {
-                log.LogInformation($"Document found, current count: {counter.Count}");
-                counter.Count += 1;  // Increment the counter
-            }
+            // Increment the counter directly
+            counter.Count += 1;
 
-            // Save the updated or new counter back to Cosmos DB
-            await outputCounter.AddAsync(counter);
+            // Save the updated counter back to Cosmos DB (only once)
+            await counterCollector.AddAsync(counter);
 
             // Serialize the updated counter to JSON
             var jsonToReturn = JsonConvert.SerializeObject(counter);
@@ -46,11 +35,5 @@ namespace Company.Function.CosmosDB
                 Content = new StringContent(jsonToReturn, Encoding.UTF8, "application/json")
             };
         }
-    }
-
-    public class Counter
-    {
-        public string Id { get; set; }
-        public int Count { get; set; }
     }
 }

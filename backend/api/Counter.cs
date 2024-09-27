@@ -1,6 +1,7 @@
+using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace Company.Function
+namespace Company.Function.CosmosDB
 {
     public class Counter
     {
