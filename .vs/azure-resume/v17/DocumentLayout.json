@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\phill\\OneDrive\\Desktop\\azure-resume\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5A2DF07A-C6D2-491F-BB52-CEACB9557025}|backend\\api\\api.csproj|c:\\users\\phill\\onedrive\\desktop\\azure-resume\\backend\\api\\api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{5A2DF07A-C6D2-491F-BB52-CEACB9557025}|backend\\api\\api.csproj|solutionrelative:backend\\api\\api.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,11 +14,23 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "api",
+              "DocumentMoniker": "C:\\Users\\phill\\OneDrive\\Desktop\\azure-resume\\backend\\api\\api.csproj",
+              "RelativeDocumentMoniker": "backend\\api\\api.csproj",
+              "ToolTip": "C:\\Users\\phill\\OneDrive\\Desktop\\azure-resume\\backend\\api\\api.csproj",
+              "RelativeToolTip": "backend\\api\\api.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-02T00:55:16.095Z",
+              "EditorCaption": ""
             }
           ]
         }
