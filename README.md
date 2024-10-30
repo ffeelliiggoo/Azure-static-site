@@ -6,6 +6,7 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 #1 ACG Projects: Build Your Resume on Azure with Blob Storage, Functions, CosmosDB, and GitHub Actions -> [video](https://youtu.be/ieYrBWmkfno) 
 #2 Hosting a Static Website on Azure - Meetup April 2024 by Daniel Coló -> [video](https://www.youtube.com/watch?v=S921NkFFriM)
 #3 Adding Custom Domain Name with CDN in Azure Storage (Static WebSite) + Domain Provider -> [video](https://www.youtube.com/watch?v=bVsmwv89vGE)
+
 ## Demo
 
 
