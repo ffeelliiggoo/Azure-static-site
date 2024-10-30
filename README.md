@@ -1,7 +1,8 @@
 # Felipe Gonzalez resume hosted in Azure Storage
 I built this page as part of the Cloud Guru Azure Resume Challenge, leveraging Azure's powerful ecosystem to deploy a fully functional static website. By integrating Functions, Azure Storage for hosting and Cosmos DB for seamless data management. This project allowed me to dive deep into real-world cloud infrastructure design, optimize performance, and enhance my expertise in deploying secure, scalable solutions on Microsoft Azure—all while having some fun with cutting-edge tech!
 
-![Cloud Resume Site architecture](https://github.com/user-attachments/assets/602c2501-3951-4f5e-9601-2632701cb2fb) ![Cloud Resume Site architecture](https://github.com/user-attachments/assets/602c2501-3951-4f5e-9601-2632701cb2fb)
+![Cloud Resume Site architecture](https://github.com/user-attachments/assets/602c2501-3951-4f5e-9601-2632701cb2fb) 
+
 Below, I would like to acknowledge and give credit, in ascending order, to the main videos I followed to integrate each part of the site.
 
 #1 ACG Projects: Build Your Resume on Azure with Blob Storage, Functions, CosmosDB, and GitHub Actions -> [video](https://youtu.be/ieYrBWmkfno) 
