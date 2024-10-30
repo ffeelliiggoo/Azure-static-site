@@ -3,7 +3,7 @@ I built this page as part of the Cloud Guru Azure Resume Challenge, leveraging A
 
 Below, I would like to acknowledge and give credit, in ascending order, to the main videos I followed to integrate each part of the site.
 
-If you'd like to build your own, here is the YouTube video [video](https://youtu.be/ieYrBWmkfno) 
+ACG Projects: Build Your Resume on Azure with Blob Storage, Functions, CosmosDB, and GitHub Actions -> [video](https://youtu.be/ieYrBWmkfno) 
 
 ## Demo
 
