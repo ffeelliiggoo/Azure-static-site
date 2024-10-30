@@ -7,7 +7,9 @@ If you'd like to build your own, here is the YouTube video [video](https://youtu
 
 ## Demo
 
+
 ## Prerequisites
+Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. Ensure that the proper downloads and extensions are set before starting the overall project for a better experience.
 
 - [GitHub account](https://github.com/join)
 - [Azure account](https://azure.microsoft.com/en-us/free)
@@ -22,8 +24,7 @@ If you'd like to build your own, here is the YouTube video [video](https://youtu
 - [Full solution](https://github.com/ACloudGuru-Resources/acg-project-azure-resume)
 
 ## Front-end resources
-
-The front-end is a static site with HTML, CSS, and JavaScript. It's static and has a visitor counter. The visitor counter data fetched via an API call to an Azure Function.
+The front-end is a static website built using HTML, CSS, and JavaScript. Despite being static, it includes a dynamic feature—a visitor counter. The counter’s data is retrieved through an API call to an Azure Function, enabling real-time updates on visitor traffic.
 
 - This [article](https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-fetch-api-to-get-data) explains how to make an API call with JavaScript and in a simple way how to use it to make an API call.
 - [Azure storage explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) is a handy tool to use when working with Storage Accounts
@@ -31,7 +32,7 @@ The front-end is a static site with HTML, CSS, and JavaScript. It's static and h
   
 ## Back-end resources
 
-The back-end is an [HTTP triggered](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) Azure Functions with Cosmos DB input and output binding. The Function is triggered, it retrieves the CosmosDB item, add +1 to it, and saves it and returns its value to the caller.
+The back-end is powered by an HTTP-triggered (https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) Azure Function, integrated with Cosmos DB using both input and output bindings. When the function is triggered, it retrieves an item from Cosmos DB, increments its value by 1, updates the database, and returns the updated value to the caller.
 
 - [Prerequisites for developing functions with visual code locally.](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp)
 - [Create a Cosmos DB account via command line](https://azure.microsoft.com/en-us/resources/templates/101-cosmosdb-free/) or [from the portal](https://docs.microsoft.com/en-us/azure/cosmos-db/create-cosmosdb-resources-portal).
