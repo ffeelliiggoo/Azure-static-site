@@ -1,7 +1,7 @@
 # Felipe Gonzalez resume hosted in Azure Storage
 I built this page as part of the Cloud Guru Azure Resume Challenge, leveraging Azure's powerful ecosystem to deploy a fully functional static website. By integrating Functions, Azure Storage for hosting and Cosmos DB for seamless data management. This project allowed me to dive deep into real-world cloud infrastructure design, optimize performance, and enhance my expertise in deploying secure, scalable solutions on Microsoft Azure—all while having some fun with cutting-edge tech!
 
-He bellow i like to pas credit in acening order to the main videos i followed to integrate each part of the site.
+Below, I would like to acknowledge and give credit, in ascending order, to the main videos I followed to integrate each part of the site.
 
 If you'd like to build your own, here is the YouTube video [video](https://youtu.be/ieYrBWmkfno) 
 
