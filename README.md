@@ -13,7 +13,7 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 #3 Adding Custom Domain Name with CDN in Azure Storage (Static WebSite) + Domain Provider -> [video](https://www.youtube.com/watch?v=bVsmwv89vGE)
 
 ## Demo
-[View static Website Live here](https://felipegcdnep.azureedge.net/)
+[Check Out the Live Version of the Static Website!](https://felipegcdnep.azureedge.net/)
 
 ## Prerequisites
 Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. Ensure that the proper downloads and extensions are set before starting the overall project for a better experience.
