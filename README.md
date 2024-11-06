@@ -50,5 +50,6 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 - You'll have to [enable CORS with Azure Functions](https://github.com/Azure/azure-functions-host/issues/1012) locally and once it's [deployed to Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#cors) for you website to be able to call it.
 
 ## Security Mod Focus
+Azure Advisory Recommendations... Coming Next
 
 
