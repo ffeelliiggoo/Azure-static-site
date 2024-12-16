@@ -1,6 +1,6 @@
 # Felipe Gonzalez resume hosted in Azure Storage
 
-This project exemplifies expertise in leveraging Microsoft Azure services to create secure, scalable, and efficient web applications. It highlights practical skills in cloud infrastructure design, serverless computing, and CI/CD practices, providing a robust foundation for further advancements in cloud technology. The core component is an Azure Function with an HTTP trigger, written in C# using the isolated worker process model. The function interacts with Azure Cosmos DB and utilizes Azure Identity for authentication, demonstrating common patterns in Azure Functions development. This serverless approach enables low-latency access to rich data for a global user base, showcasing the power of event-driven architectures in cloud computing.
+This project utilizes Microsoft Azure services to create a secure, scalable, and efficient website. It demonstrates expertise in designing cloud infrastructure, using serverless computing, and implementing automated deployment processes (CI/CD). The main feature is an Azure Function built with C#, which handles web requests. This function interacts with Azure Cosmos DB to store and manage data and uses Azure Identity to manage user authentication. By adopting a serverless approach, the website can quickly handle requests without the need to manage servers, ensuring fast access to data for users around the world.
 
 ![Cloud Resume Site architecture](https://github.com/user-attachments/assets/fc7b1e6e-0fd2-4cf5-84d2-35425d1094b5)
 
