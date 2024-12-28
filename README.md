@@ -15,6 +15,7 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 ## Demo
 [Check Out the Live Version of the Static Website!](https://routetothecloud.com/)
 
+
 ## Prerequisites
 Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. Ensure that the proper downloads and extensions are set before starting the overall project for a better experience.
 
