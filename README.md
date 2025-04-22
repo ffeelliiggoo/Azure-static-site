@@ -55,7 +55,7 @@ Sure! Here's everything formatted as **one single markdown block**, fully self-c
 ## Securing the Function Secret
 
 ````markdown
-Your `main.bicep` file securely handles the Azure Function secret (Cosmos DB connection string) using a modern, best-practice approach that avoids hardcoding secrets in code or pipeline variables.
+The `main.bicep` file located in the infrastructure folder securely handles the Azure Function secret (Cosmos DB connection string) using a best-practice approach that avoids hardcoding secrets in code or pipeline variables.
 
 ## 🔐 Azure Function Secret Handling (Bicep-based)
 
@@ -86,8 +86,10 @@ Your `main.bicep` file securely handles the Azure Function secret (Cosmos DB con
 ## 📌 Summary
 ![image](https://github.com/user-attachments/assets/27f07b1e-a4ab-4f75-93ab-f000f10f930f)
 
+
 ## 🚀 Implementing Azure DevOps
 
+````markdown
 This pipeline automates the build and deployment process for a web application consisting of two main parts:  
 - A **backend Azure Function** (written in .NET)  
 - A **static frontend** hosted in Azure Blob Storage  
