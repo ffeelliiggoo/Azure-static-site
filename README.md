@@ -72,3 +72,69 @@ The `main.bicep` file in the infrastructure folder handles Azure Function secret
 - The application setting is configured to **reference** the secret from Key Vault, rather than storing it directly:
   ```bicep
   CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
+#### 5. Runtime Access in Application Code
+At runtime, the Azure Function accesses the secret like this:
+var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
+
+
+### 🚀 Azure DevOps Pipeline Overview 
+
+```markdown
+## 🚀 Azure DevOps Pipeline Overview
+
+The Azure DevOps pipeline automates the build and deployment process for a web application consisting of:
+
+- A **.NET-based backend Azure Function**  
+- A **static frontend** hosted in Azure Blob Storage  
+
+The pipeline triggers automatically on commits to the `master` branch.
+
+### 📦 Key Pipeline Variables
+
+- `azureSubscription`: Azure service connection for deployment  
+- `functionAppName`: Target Azure Function App name  
+- `vmImageName`: Agent VM image (`windows-latest`)  
+- `workingDirectory`: Backend Function app path  
+- `blobStorageAccount` and `blobContainerName`: Storage location for frontend assets  
+- `frontendDirectory`: Path to static frontend files  
+
+---
+
+### 🔧 Stage 1: Build
+
+This stage compiles the backend and uploads the frontend assets.
+
+1. **Build Backend (.NET)**  
+   - Uses the `DotNetCoreCLI` task to build the Azure Function  
+   - Output is stored in the `publish_output` folder  
+
+2. **Archive Output**  
+   - Uses `ArchiveFiles` to compress the build into a `.zip` file  
+
+3. **Upload Frontend**  
+   - Uses `AzureCLI` with PowerShell to upload files to Blob Storage:  
+     ```bash
+     az storage blob upload-batch
+     ```
+
+4. **Publish Artifacts**  
+   - The backend `.zip` file is published as a build artifact named `drop`  
+
+---
+
+### 🚀 Stage 2: Deploy
+
+This stage handles backend deployment.
+
+1. **Deploy to Azure Function App**  
+   - The `.zip` artifact is deployed using the `AzureFunctionApp` task  
+   - Deployment is gated to run only after a successful build stage  
+
+---
+
+### 🧩 Summary
+
+- The **frontend** is automatically uploaded to Blob Storage with each commit  
+- The **backend** Azure Function is securely built and deployed using serverless practices  
+- Secrets are handled with **Key Vault**, **RBAC**, and **Key Vault references** for secure, maintainable infrastructure
+
