@@ -1,7 +1,4 @@
-Absolutely! Here's a **single GitHub-style Markdown block** that documents how your page view counter works using your `index.html` and `main.js` logic:
-
-````markdown
-# 📊 Azure Static Website Counter with Azure Functions & Cosmos DB
+### 📊 Azure Static Website Counter with Azure Functions & Cosmos DB
 
 This project implements a **dynamic page view counter** on a static website hosted in **Azure Blob Storage** using the following components:
 
