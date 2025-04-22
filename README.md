@@ -56,8 +56,6 @@ Sure! Here's everything formatted as **one single markdown block**, fully self-c
 
 Your `main.bicep` file securely handles the Azure Function secret (Cosmos DB connection string) using a modern, best-practice approach that avoids hardcoding secrets in code or pipeline variables.
 
----
-
 ## 🔐 Azure Function Secret Handling (Bicep-based)
 
 ### 1. Key Vault Created
@@ -71,9 +69,7 @@ Your `main.bicep` file securely handles the Azure Function secret (Cosmos DB con
 
 ### 4. App Setting Uses Key Vault Reference
 - The Function App config uses a **Key Vault reference**, not the actual secret:
-  ```
-  CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
-  ```
+    CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
 
 ### 5. Runtime Access in Code
 - The app reads the secret at runtime using:
@@ -81,19 +77,13 @@ Your `main.bicep` file securely handles the Azure Function secret (Cosmos DB con
   var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
   ```
 
----
-
 ### ✅ Security Advantages
 - 🔐 Secrets are never exposed in code or pipelines.
 - 🔄 Secrets can be rotated in Key Vault without redeploying the app.
 - 🔍 Access is controlled via RBAC, with a clear audit trail.
 
----
-
 ## 📌 Summary
 ![image](https://github.com/user-attachments/assets/27f07b1e-a4ab-4f75-93ab-f000f10f930f)
-
----
 
 ## 🚀 Implementing Azure DevOps
 
@@ -102,9 +92,7 @@ This pipeline automates the build and deployment process for a web application c
 - A **static frontend** hosted in Azure Blob Storage  
 
 The pipeline runs automatically when changes are pushed to the `master` branch.
-````
 
-````markdown
 ## 🔹 Pipeline Breakdown
 
 ### 🔸 Variables
@@ -117,8 +105,6 @@ The pipeline starts by defining several variables:
 - **`workingDirectory`**: The path to the backend Azure Function project.  
 - **`blobStorageAccount`** and **`blobContainerName`**: Where the frontend static files will be uploaded.  
 - **`frontendDirectory`**: The path to the frontend application files.  
-
----
 
 ### 🔹 Stage 1: Build
 
@@ -136,8 +122,6 @@ This stage handles compiling the backend and uploading the frontend.
 4. **Publish Build Artifact**  
    The zipped backend output is saved as a build artifact named `drop` so it can be used in the next stage.
 
----
-
 ### 🔹 Stage 2: Deploy
 
 This stage deploys the backend Azure Function.
@@ -146,11 +130,7 @@ This stage deploys the backend Azure Function.
    The previously created `.zip` file is deployed to the Azure Function App (`fn6ic`) using the `AzureFunctionApp` task.  
    The deployment only proceeds if the build stage succeeds.
 
----
-
-### ✅ Outcome
+### ✅ Conclusion
 
 - The **frontend** is hosted in Azure Blob Storage and automatically updated with each commit.  
 - The **backend** Azure Function is rebuilt and redeployed using serverless deployment via a zip package.
-````
-
