@@ -16,6 +16,22 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 [Check Out the Live Version of the Static Website!](https://www.routetothecloud.com/)
 
 
+✅ Security Advantages
+🔐 Secrets are never exposed in code or pipelines.
+
+🔄 Secrets can be rotated in Key Vault without redeploying the app.
+
+🔍 Access is controlled via RBAC, with a clear audit trail.
+
+📌 Summary
+
+Step | What it Does
+keyVault | Creates secure, RBAC-enabled Key Vault
+cosmosDbConnectionStringSecret | Saves Cosmos DB connection string as a Key Vault secret
+functionAppKeyVaultRole | Grants Azure Function identity access to read secrets
+functionAppSettings | Injects Key Vault secret reference into Function App settings
+Runtime Access | Uses Environment.GetEnvironmentVariable(...) to retrieve secret
+
 ## Prerequisites
 Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. Ensure that the proper downloads and extensions are set before starting the overall project for a better experience.
 
