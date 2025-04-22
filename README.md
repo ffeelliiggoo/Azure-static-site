@@ -16,6 +16,7 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 
 ## Site Link:
 [Check Out the Live Version of the Static Website!](https://www.routetothecloud.com/)
+https://www.routetothecloud.com/
 
 ## Prerequisites
 Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. 
