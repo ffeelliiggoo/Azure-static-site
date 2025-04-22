@@ -51,24 +51,33 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 - 
 
 ## Securing the Function secret
-Keyvault integration
+Your main.bicep file securely handles the Azure Function secret (Cosmos DB connection string) using a modern, best-practice approach that avoids hardcoding secrets in code or pipeline variables.
 
+1- Key Vault Created
+A secure Key Vault is provisioned with RBAC enabled.
+
+2- Cosmos DB Secret Stored
+The Cosmos DB connection string is pulled dynamically and stored as a secret in Key Vault.
+
+3- Access Granted
+The Function App’s managed identity is granted the Key Vault Secrets User role.
+
+4- App Setting Uses Key Vault Reference
+Instead of injecting the actual secret, a reference like:
+@Microsoft.KeyVault(VaultName=...;SecretName=...)
+is added to the Function App's settings.
+
+5- Function Reads at Runtime
+The app securely reads the secret using:
+Environment.GetEnvironmentVariable("CosmosDbConnectionString")
 
 ✅ Security Advantages
-🔐 Secrets are never exposed in code or pipelines.
-
-🔄 Secrets can be rotated in Key Vault without redeploying the app.
-
-🔍 Access is controlled via RBAC, with a clear audit trail.
+- 🔐 Secrets are never exposed in code or pipelines.
+- 🔄 Secrets can be rotated in Key Vault without redeploying the app.
+- 🔍 Access is controlled via RBAC, with a clear audit trail.
 
 📌 Summary
-
-Step | What it Does
-keyVault | Creates secure, RBAC-enabled Key Vault
-cosmosDbConnectionStringSecret | Saves Cosmos DB connection string as a Key Vault secret
-functionAppKeyVaultRole | Grants Azure Function identity access to read secrets
-functionAppSettings | Injects Key Vault secret reference into Function App settings
-Runtime Access | Uses Environment.GetEnvironmentVariable(...) to retrieve secret
+![image](https://github.com/user-attachments/assets/27f07b1e-a4ab-4f75-93ab-f000f10f930f)
 
 ## Implementing Azure DevOps
 This pipeline automates the build and deployment process for a web application consisting of two main parts: a backend Azure Function (written in .NET) and a static frontend hosted in Azure Blob Storage. The pipeline runs when changes are pushed to the `master` branch.
