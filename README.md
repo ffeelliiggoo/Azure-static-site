@@ -66,7 +66,6 @@ Your main.bicep file securely handles the Azure Function secret (Cosmos DB conne
 ### 4. App Setting Uses Key Vault Reference
 - The Function App config uses a **Key Vault reference**, not the actual secret:
 
-
 ### 5. Runtime Access in Code
 - The app reads the secret at runtime using:
 ```csharp
@@ -119,6 +118,3 @@ This stage deploys the backend Azure Function.
 
 - The **frontend** is hosted in Azure Blob Storage and automatically updated with each commit.
 - The **backend** Azure Function is rebuilt and redeployed using serverless deployment via zip package.
-
-This setup provides a clean, automated CI/CD pipeline for a modern, scalable Azure-hosted web application.
-
