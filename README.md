@@ -1,6 +1,6 @@
-# Felipe Gonzalez resume hosted in Azure Storage
+# Static site hosted in Azure Storage
 
-This project utilizes Microsoft Azure services to create a secure, scalable, and efficient website. It demonstrates expertise in designing cloud infrastructure, using serverless computing, and implementing automated deployment processes (CI/CD). The main feature is an Azure Function built with C#, which handles web requests. This function interacts with Azure Cosmos DB to store and manage data and uses Azure Identity to manage user authentication. By adopting a serverless approach, the website can quickly handle requests without the need to manage servers, ensuring fast access to data for users around the world. 
+This project showcases a static website hosted on Azure Storage using serverless architecture. It features an Azure Function in C# that processes web requests and connects to Cosmos DB for data management, with user authentication handled through Azure Identity. The setup enables fast, scalable performance without server maintenance. 
 
 ![Cloud Resume Site architecture](https://github.com/user-attachments/assets/fc7b1e6e-0fd2-4cf5-84d2-35425d1094b5)
 
@@ -13,7 +13,7 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 #3 Adding Custom Domain Name with CDN in Azure Storage (Static WebSite) + Domain Provider -> [video](https://www.youtube.com/watch?v=bVsmwv89vGE)
 
 ## Demo
-[Check Out the Live Version of the Static Website!](https://routetothecloud.com/)
+[Check Out the Live Version of the Static Website!](https://www.routetothecloud.com/)
 
 
 ## Prerequisites
@@ -51,7 +51,52 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 - You'll have to [enable CORS with Azure Functions](https://github.com/Azure/azure-functions-host/issues/1012) locally and once it's [deployed to Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#cors) for you website to be able to call it.
 - 
 
-## Security Mod Focus
-Azure Advisory Recommendations... Coming Next
+## Securing the Function secret
+Keyvault integration
+
+## Implementing Azure DevOps
+This pipeline automates the build and deployment process for a web application consisting of two main parts: a backend Azure Function (written in .NET) and a static frontend hosted in Azure Blob Storage. The pipeline runs when changes are pushed to the `master` branch.
+
+### 🔹 **Pipeline Breakdown**
+
+#### 🔸 Variables
+The pipeline starts by defining several variables:
+- **`azureSubscription`**: The service connection used to authenticate and deploy resources in Azure.
+- **`functionAppName`**: The name of the Azure Function App where the backend will be deployed.
+- **`vmImageName`**: The type of virtual machine image used by the agent (in this case, `windows-latest`).
+- **`workingDirectory`**: The path to the backend Azure Function project.
+- **`blobStorageAccount`** and **`blobContainerName`**: Where the frontend static files will be uploaded.
+- **`frontendDirectory`**: The path to the frontend application files.
+
+### 🔹 Stage 1: Build
+
+This stage handles compiling the backend and uploading the frontend.
+
+1. Build .NET Project  
+   The backend (Azure Function) is built using the `DotNetCoreCLI` task. The compiled output is saved in a `publish_output` directory.
+
+2. Archive Build Output  
+   The compiled files are zipped using the `ArchiveFiles` task, making them ready for deployment.
+
+3. Deploy Frontend to Blob Storage  
+   The frontend files are uploaded to Azure Blob Storage using the `AzureCLI` task, which runs a PowerShell script with the `az storage blob upload-batch` command.
+
+4. Publish Build Artifact  
+   The zipped backend output is saved as a build artifact named `drop` so it can be used in the next stage.
+
+
+
+🔹 **Stage 2: Deploy**
+
+This stage deploys the backend Azure Function.
+
+1. **Deployment to Azure Function App**  
+   The previously created `.zip` file is deployed to the Azure Function App (`fn6ic`) using the `AzureFunctionApp` task. The deployment only proceeds if the build stage succeeds.
+
+
+- The **frontend** is hosted in Azure Blob Storage and automatically updated with each commit.
+- The **backend** Azure Function is rebuilt and redeployed using serverless deployment via zip package.
+
+This setup provides a clean, automated CI/CD pipeline for a modern, scalable Azure-hosted web application.
 
 
