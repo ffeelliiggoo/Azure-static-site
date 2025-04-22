@@ -12,25 +12,8 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 
 #3 Adding Custom Domain Name with CDN in Azure Storage (Static WebSite) + Domain Provider -> [video](https://www.youtube.com/watch?v=bVsmwv89vGE)
 
-## Demo
+## Site Link:
 [Check Out the Live Version of the Static Website!](https://www.routetothecloud.com/)
-
-
-✅ Security Advantages
-🔐 Secrets are never exposed in code or pipelines.
-
-🔄 Secrets can be rotated in Key Vault without redeploying the app.
-
-🔍 Access is controlled via RBAC, with a clear audit trail.
-
-📌 Summary
-
-Step | What it Does
-keyVault | Creates secure, RBAC-enabled Key Vault
-cosmosDbConnectionStringSecret | Saves Cosmos DB connection string as a Key Vault secret
-functionAppKeyVaultRole | Grants Azure Function identity access to read secrets
-functionAppSettings | Injects Key Vault secret reference into Function App settings
-Runtime Access | Uses Environment.GetEnvironmentVariable(...) to retrieve secret
 
 ## Prerequisites
 Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. Ensure that the proper downloads and extensions are set before starting the overall project for a better experience.
@@ -69,6 +52,23 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 
 ## Securing the Function secret
 Keyvault integration
+
+
+✅ Security Advantages
+🔐 Secrets are never exposed in code or pipelines.
+
+🔄 Secrets can be rotated in Key Vault without redeploying the app.
+
+🔍 Access is controlled via RBAC, with a clear audit trail.
+
+📌 Summary
+
+Step | What it Does
+keyVault | Creates secure, RBAC-enabled Key Vault
+cosmosDbConnectionStringSecret | Saves Cosmos DB connection string as a Key Vault secret
+functionAppKeyVaultRole | Grants Azure Function identity access to read secrets
+functionAppSettings | Injects Key Vault secret reference into Function App settings
+Runtime Access | Uses Environment.GetEnvironmentVariable(...) to retrieve secret
 
 ## Implementing Azure DevOps
 This pipeline automates the build and deployment process for a web application consisting of two main parts: a backend Azure Function (written in .NET) and a static frontend hosted in Azure Blob Storage. The pipeline runs when changes are pushed to the `master` branch.
