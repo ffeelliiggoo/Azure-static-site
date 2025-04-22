@@ -71,6 +71,7 @@ Your main.bicep file securely handles the Azure Function secret (Cosmos DB conne
 ```csharp
 var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
 
+
 ✅ Security Advantages
 - 🔐 Secrets are never exposed in code or pipelines.
 - 🔄 Secrets can be rotated in Key Vault without redeploying the app.
