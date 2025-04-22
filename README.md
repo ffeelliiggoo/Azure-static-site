@@ -52,90 +52,23 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 - [Write to a Cosmos DB item with Functions binding.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-output?tabs=csharp)
 - You'll have to [enable CORS with Azure Functions](https://github.com/Azure/azure-functions-host/issues/1012) locally and once it's [deployed to Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#cors) for you website to be able to call it.
 
-Sure! Here's everything formatted as **one single markdown block**, fully self-contained and ready to paste or use:
+## 🔐 Securing Azure Function Secrets
 
+The `main.bicep` file in the infrastructure folder handles Azure Function secrets—specifically the Cosmos DB connection string—using secure, recommended practices. This avoids hardcoding sensitive data in code or pipeline variables.
 
-## Securing the Function Secret
+### ✅ Secret Handling Workflow
 
-````markdown
-The `main.bicep` file located in the infrastructure folder securely handles the Azure Function secret (Cosmos DB connection string) using a best-practice approach that avoids hardcoding secrets in code or pipeline variables.
+#### 1. Key Vault Provisioning  
+- An Azure Key Vault is deployed with RBAC enabled for secure access management.
 
-## 🔐 Azure Function Secret Handling (Bicep-based)
+#### 2. Secret Storage  
+- The Cosmos DB connection string is retrieved and stored in Key Vault as a secret named `CosmosDbConnectionString`.
 
-### 1. Key Vault Created
-- A secure Azure Key Vault is deployed with RBAC enabled.
+#### 3. Identity-Based Access  
+- The Azure Function App is assigned a **system-managed identity**.
+- This identity is granted the `Key Vault Secrets User` role to enable secure secret retrieval.
 
-### 2. Cosmos DB Connection String Stored
-- The connection string is retrieved from Cosmos DB and saved as a secret (`CosmosDbConnectionString`) in Key Vault.
-
-### 3. Access Granted to Function App
-- The Function App's **system-assigned managed identity** is granted the `Key Vault Secrets User` role.
-
-### 4. App Setting Uses Key Vault Reference
-- The Function App config uses a **Key Vault reference**, not the actual secret:
-    CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
-
-### 5. Runtime Access in Code
-- The app reads the secret at runtime using:
-  ```csharp
-  var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
-  ```
-
-### ✅ Security Advantages
-- 🔐 Secrets are never exposed in code or pipelines.
-- 🔄 Secrets can be rotated in Key Vault without redeploying the app.
-- 🔍 Access is controlled via RBAC, with a clear audit trail.
-
-## 📌 Summary
-![image](https://github.com/user-attachments/assets/27f07b1e-a4ab-4f75-93ab-f000f10f930f)
-
-
-## 🚀 Implementing Azure DevOps
-
-
-This pipeline automates the build and deployment process for a web application consisting of two main parts:  
-- A **backend Azure Function** (written in .NET)  
-- A **static frontend** hosted in Azure Blob Storage  
-
-The pipeline runs automatically when changes are pushed to the `master` branch.
-  ```csharp
-
-## 🔹 Pipeline Breakdown
-
-### 🔸 The pipeline starts by defining several variables:
-
-- **`azureSubscription`**: The service connection used to authenticate and deploy resources in Azure.  
-- **`functionAppName`**: The name of the Azure Function App where the backend will be deployed.  
-- **`vmImageName`**: The type of virtual machine image used by the agent (`windows-latest`).  
-- **`workingDirectory`**: The path to the backend Azure Function project.  
-- **`blobStorageAccount`** and **`blobContainerName`**: Where the frontend static files will be uploaded.  
-- **`frontendDirectory`**: The path to the frontend application files.  
-
-### 🔹 Stage 1: Build
-
-This stage handles compiling the backend and uploading the frontend.
-
-1. **Build .NET Project**  
-   The backend (Azure Function) is built using the `DotNetCoreCLI` task. The compiled output is saved in a `publish_output` directory.
-
-2. **Archive Build Output**  
-   The compiled files are zipped using the `ArchiveFiles` task, making them ready for deployment.
-
-3. **Deploy Frontend to Blob Storage**  
-   The frontend files are uploaded to Azure Blob Storage using the `AzureCLI` task, which runs a PowerShell script with the `az storage blob upload-batch` command.
-
-4. **Publish Build Artifact**  
-   The zipped backend output is saved as a build artifact named `drop` so it can be used in the next stage.
-
-### 🔹 Stage 2: Deploy
-
-This stage deploys the backend Azure Function.
-
-1. **Deployment to Azure Function App**  
-   The previously created `.zip` file is deployed to the Azure Function App (`fn6ic`) using the `AzureFunctionApp` task.  
-   The deployment only proceeds if the build stage succeeds.
-
-### ✅ Conclusion
-
-- The **frontend** is hosted in Azure Blob Storage and automatically updated with each commit.  
-- The **backend** Azure Function is rebuilt and redeployed using serverless deployment via a zip package.
+#### 4. Configuration Using Key Vault Reference  
+- The application setting is configured to **reference** the secret from Key Vault, rather than storing it directly:
+  ```bicep
+  CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
