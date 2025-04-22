@@ -60,20 +60,23 @@ The `main.bicep` file in the infrastructure folder handles Azure Function secret
 
 1. **Key Vault Provisioning**  
    - An Azure Key Vault is deployed with RBAC enabled for secure access management.
+  
+![Keyvault secret](https://github.com/user-attachments/assets/95ac04de-0487-4e1e-b0fc-a76014c8702e)
 
-2. **Secret Storage**  
+3. **Secret Storage**  
    - The Cosmos DB connection string is retrieved and stored in Key Vault as a secret named `CosmosDbConnectionString`.
+![Azure cosmos db key](https://github.com/user-attachments/assets/0fe45440-da8c-4621-b268-47910a0f5276)
 
-3. **Identity-Based Access**  
+4. **Identity-Based Access**  
    - The Azure Function App is assigned a system-managed identity.
    - This identity is granted the `Key Vault Secrets User` role to enable secure secret retrieval.
 
-4. **Configuration Using Key Vault Reference**  
+5. **Configuration Using Key Vault Reference**  
    - The application setting references the secret from Key Vault, rather than storing it directly:
      ```bicep
      CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
      ```
-5. **Runtime Access in Application Code**  
+6. **Runtime Access in Application Code**  
    - At runtime, the Azure Function accesses the secret using:
      ```csharp
      var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
