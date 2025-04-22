@@ -73,13 +73,11 @@ The `main.bicep` file in the infrastructure folder handles Azure Function secret
      ```bicep
      CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
      ```
-
 5. **Runtime Access in Application Code**  
    - At runtime, the Azure Function accesses the secret using:
      ```csharp
      var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
      ```
-
 ## Security Benefits
 
 - Secrets are never exposed in source code or pipelines.  
@@ -118,7 +116,6 @@ The pipeline triggers automatically on pushes to the `master` branch.
      ```bash
      az storage blob upload-batch
      ```
-
 4. **Publish Build Artifacts**  
    - The backend zip is published as a build artifact named `drop`
 
@@ -129,9 +126,6 @@ The pipeline triggers automatically on pushes to the `master` branch.
    - This stage only runs if the build stage is successful
 
 ## Summary
-
 - The frontend is hosted in Azure Blob Storage and auto-updated on every commit  
 - The backend Azure Function is rebuilt and deployed using a serverless model  
 - Secure practices are applied end-to-end through automation and role-based access
-
-
