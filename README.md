@@ -51,9 +51,10 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 
 Sure! Here's everything formatted as **one single markdown block**, fully self-contained and ready to paste or use:
 
-````markdown
+
 ## Securing the Function Secret
 
+````markdown
 Your `main.bicep` file securely handles the Azure Function secret (Cosmos DB connection string) using a modern, best-practice approach that avoids hardcoding secrets in code or pipeline variables.
 
 ## 🔐 Azure Function Secret Handling (Bicep-based)
@@ -92,12 +93,11 @@ This pipeline automates the build and deployment process for a web application c
 - A **static frontend** hosted in Azure Blob Storage  
 
 The pipeline runs automatically when changes are pushed to the `master` branch.
+  ```csharp
 
 ## 🔹 Pipeline Breakdown
 
-### 🔸 Variables
-
-The pipeline starts by defining several variables:
+### 🔸 The pipeline starts by defining several variables:
 
 - **`azureSubscription`**: The service connection used to authenticate and deploy resources in Azure.  
 - **`functionAppName`**: The name of the Azure Function App where the backend will be deployed.  
