@@ -49,8 +49,14 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 - [Write to a Cosmos DB item with Functions binding.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-output?tabs=csharp)
 - You'll have to [enable CORS with Azure Functions](https://github.com/Azure/azure-functions-host/issues/1012) locally and once it's [deployed to Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#cors) for you website to be able to call it.
 
-## Securing the Function secret
-Your main.bicep file securely handles the Azure Function secret (Cosmos DB connection string) using a modern, best-practice approach that avoids hardcoding secrets in code or pipeline variables.
+Sure! Here's everything formatted as **one single markdown block**, fully self-contained and ready to paste or use:
+
+````markdown
+## Securing the Function Secret
+
+Your `main.bicep` file securely handles the Azure Function secret (Cosmos DB connection string) using a modern, best-practice approach that avoids hardcoding secrets in code or pipeline variables.
+
+---
 
 ## 🔐 Azure Function Secret Handling (Bicep-based)
 
@@ -65,57 +71,86 @@ Your main.bicep file securely handles the Azure Function secret (Cosmos DB conne
 
 ### 4. App Setting Uses Key Vault Reference
 - The Function App config uses a **Key Vault reference**, not the actual secret:
+  ```
+  CosmosDbConnectionString: '@Microsoft.KeyVault(VaultName=${keyVaultName};SecretName=CosmosDbConnectionString)'
+  ```
 
 ### 5. Runtime Access in Code
 - The app reads the secret at runtime using:
-```csharp
-var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
+  ```csharp
+  var connStr = Environment.GetEnvironmentVariable("CosmosDbConnectionString");
+  ```
 
+---
 
-✅ Security Advantages
+### ✅ Security Advantages
 - 🔐 Secrets are never exposed in code or pipelines.
 - 🔄 Secrets can be rotated in Key Vault without redeploying the app.
 - 🔍 Access is controlled via RBAC, with a clear audit trail.
 
-📌 Summary
+---
+
+## 📌 Summary
 ![image](https://github.com/user-attachments/assets/27f07b1e-a4ab-4f75-93ab-f000f10f930f)
 
-## Implementing Azure DevOps
-This pipeline automates the build and deployment process for a web application consisting of two main parts: a backend Azure Function (written in .NET) and a static frontend hosted in Azure Blob Storage. The pipeline runs when changes are pushed to the `master` branch.
+---
 
-### 🔹 **Pipeline Breakdown**
+## 🚀 Implementing Azure DevOps
 
-#### 🔸 Variables
+This pipeline automates the build and deployment process for a web application consisting of two main parts:  
+- A **backend Azure Function** (written in .NET)  
+- A **static frontend** hosted in Azure Blob Storage  
+
+The pipeline runs automatically when changes are pushed to the `master` branch.
+````
+
+````markdown
+## 🔹 Pipeline Breakdown
+
+### 🔸 Variables
+
 The pipeline starts by defining several variables:
-- **`azureSubscription`**: The service connection used to authenticate and deploy resources in Azure.
-- **`functionAppName`**: The name of the Azure Function App where the backend will be deployed.
-- **`vmImageName`**: The type of virtual machine image used by the agent (in this case, `windows-latest`).
-- **`workingDirectory`**: The path to the backend Azure Function project.
-- **`blobStorageAccount`** and **`blobContainerName`**: Where the frontend static files will be uploaded.
-- **`frontendDirectory`**: The path to the frontend application files.
+
+- **`azureSubscription`**: The service connection used to authenticate and deploy resources in Azure.  
+- **`functionAppName`**: The name of the Azure Function App where the backend will be deployed.  
+- **`vmImageName`**: The type of virtual machine image used by the agent (`windows-latest`).  
+- **`workingDirectory`**: The path to the backend Azure Function project.  
+- **`blobStorageAccount`** and **`blobContainerName`**: Where the frontend static files will be uploaded.  
+- **`frontendDirectory`**: The path to the frontend application files.  
+
+---
 
 ### 🔹 Stage 1: Build
 
 This stage handles compiling the backend and uploading the frontend.
 
-1. Build .NET Project  
+1. **Build .NET Project**  
    The backend (Azure Function) is built using the `DotNetCoreCLI` task. The compiled output is saved in a `publish_output` directory.
 
-2. Archive Build Output  
+2. **Archive Build Output**  
    The compiled files are zipped using the `ArchiveFiles` task, making them ready for deployment.
 
-3. Deploy Frontend to Blob Storage  
+3. **Deploy Frontend to Blob Storage**  
    The frontend files are uploaded to Azure Blob Storage using the `AzureCLI` task, which runs a PowerShell script with the `az storage blob upload-batch` command.
 
-4. Publish Build Artifact  
+4. **Publish Build Artifact**  
    The zipped backend output is saved as a build artifact named `drop` so it can be used in the next stage.
 
-🔹 **Stage 2: Deploy**
+---
+
+### 🔹 Stage 2: Deploy
 
 This stage deploys the backend Azure Function.
 
 1. **Deployment to Azure Function App**  
-   The previously created `.zip` file is deployed to the Azure Function App (`fn6ic`) using the `AzureFunctionApp` task. The deployment only proceeds if the build stage succeeds.
+   The previously created `.zip` file is deployed to the Azure Function App (`fn6ic`) using the `AzureFunctionApp` task.  
+   The deployment only proceeds if the build stage succeeds.
 
-- The **frontend** is hosted in Azure Blob Storage and automatically updated with each commit.
-- The **backend** Azure Function is rebuilt and redeployed using serverless deployment via zip package.
+---
+
+### ✅ Outcome
+
+- The **frontend** is hosted in Azure Blob Storage and automatically updated with each commit.  
+- The **backend** Azure Function is rebuilt and redeployed using serverless deployment via a zip package.
+````
+
