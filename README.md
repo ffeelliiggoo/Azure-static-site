@@ -1,6 +1,8 @@
 # Static site hosted in Azure Storage
 
-This project showcases a static website hosted on Azure Storage using serverless architecture. It features an Azure Function in C# that processes web requests and connects to Cosmos DB for data management, with user authentication handled through Azure Identity. The setup enables fast, scalable performance without server maintenance. 
+This project showcases a static website hosted on Azure Storage using serverless architecture. 
+It features an Azure Function in C# that processes web requests and connects to Cosmos DB for data management, with user authentication handled through Azure Identity. 
+The setup enables fast, scalable performance without server maintenance. 
 
 ![Cloud Resume Site architecture](https://github.com/user-attachments/assets/fc7b1e6e-0fd2-4cf5-84d2-35425d1094b5)
 
@@ -16,7 +18,8 @@ Below, I would like to acknowledge and give credit, in ascending order, to the m
 [Check Out the Live Version of the Static Website!](https://www.routetothecloud.com/)
 
 ## Prerequisites
-Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. Ensure that the proper downloads and extensions are set before starting the overall project for a better experience.
+Make sure to look at these components first; otherwise, you may spend a lot of time and effort just adjusting your machine. 
+Ensure that the proper downloads and extensions are set before starting the overall project for a better experience.
 
 - [GitHub account](https://github.com/join)
 - [Azure account](https://azure.microsoft.com/en-us/free)
@@ -89,7 +92,7 @@ The `main.bicep` file located in the infrastructure folder securely handles the 
 
 ## 🚀 Implementing Azure DevOps
 
-````markdown
+
 This pipeline automates the build and deployment process for a web application consisting of two main parts:  
 - A **backend Azure Function** (written in .NET)  
 - A **static frontend** hosted in Azure Blob Storage  
