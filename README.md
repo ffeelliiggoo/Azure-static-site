@@ -48,7 +48,6 @@ The back-end is powered by an [HTTP triggered Azure Functions](https://docs.micr
 - [Retrieve a Cosmos DB item with Functions binding.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-input?tabs=csharp)
 - [Write to a Cosmos DB item with Functions binding.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-output?tabs=csharp)
 - You'll have to [enable CORS with Azure Functions](https://github.com/Azure/azure-functions-host/issues/1012) locally and once it's [deployed to Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#cors) for you website to be able to call it.
-- 
 
 ## Securing the Function secret
 Your main.bicep file securely handles the Azure Function secret (Cosmos DB connection string) using a modern, best-practice approach that avoids hardcoding secrets in code or pipeline variables.
@@ -111,8 +110,6 @@ This stage handles compiling the backend and uploading the frontend.
 4. Publish Build Artifact  
    The zipped backend output is saved as a build artifact named `drop` so it can be used in the next stage.
 
-
-
 🔹 **Stage 2: Deploy**
 
 This stage deploys the backend Azure Function.
@@ -120,10 +117,8 @@ This stage deploys the backend Azure Function.
 1. **Deployment to Azure Function App**  
    The previously created `.zip` file is deployed to the Azure Function App (`fn6ic`) using the `AzureFunctionApp` task. The deployment only proceeds if the build stage succeeds.
 
-
 - The **frontend** is hosted in Azure Blob Storage and automatically updated with each commit.
 - The **backend** Azure Function is rebuilt and redeployed using serverless deployment via zip package.
 
 This setup provides a clean, automated CI/CD pipeline for a modern, scalable Azure-hosted web application.
-
 
