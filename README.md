@@ -61,7 +61,6 @@ The `main.bicep` file in the infrastructure folder handles Azure Function secret
 
 1. **Key Vault Provisioning**  
    - An Azure Key Vault is deployed with RBAC enabled for secure access management.
-  
 ![Keyvault secret](https://github.com/user-attachments/assets/95ac04de-0487-4e1e-b0fc-a76014c8702e)
 
 3. **Secret Storage**  
